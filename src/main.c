@@ -16,11 +16,13 @@ int help(void)
 int start(factory_t *robot)
 {
     int x = 0;
+    char delimiter[] = "\t  ";
 
+    delimiter[2] = SEPARATOR_CHAR;
     if (robot->input == NULL)
         return 0;
     for (robot->idx = 0; robot->input[robot->idx] != NULL; robot->idx++){
-        robot->split = my_split(robot->input[robot->idx], "\t ", '"');
+        robot->split = my_split(robot->input[robot->idx], delimiter, '"');
         if (robot->split == NULL)
             continue;
         x = handle_line(robot);
