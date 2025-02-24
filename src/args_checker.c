@@ -41,7 +41,7 @@ static int verify_reg(char *arg)
     if (!verify_number(arg))
         return -2;
     my_sscanf(arg, "%d", &val);
-    if (val <= 16)
+    if (val <= REG_NUMBER)
         return 0;
     return -2;
 }
