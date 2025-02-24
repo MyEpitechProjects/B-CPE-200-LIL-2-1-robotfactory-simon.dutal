@@ -15,7 +15,8 @@ SRC	=	src/my_puterr.c\
 		src/my_strcat.c\
 		src/my_strcpy.c\
 		src/my_memset.c\
-		src/my_put_nbr_err.c
+		src/my_put_nbr_err.c\
+		src/my_string_is_int.c
 
 OBJ	= $(SRC:.c=.o)
 

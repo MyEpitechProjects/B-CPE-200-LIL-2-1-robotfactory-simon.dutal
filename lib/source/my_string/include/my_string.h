@@ -26,5 +26,6 @@ char *my_strcpy(char *dest, char const *src);
 char *my_strncpy(char *dest, char const *src, int n);
 void my_memset(void *ptr, int size, char value);
 int my_put_nbr_err(int nb);
+int my_string_is_int(const char *str);
 
 #endif

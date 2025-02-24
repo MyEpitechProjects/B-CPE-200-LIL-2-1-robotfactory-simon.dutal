@@ -21,22 +21,22 @@ static int calcul_string_spe_len(sscanf_t *sscanf, char *str,
 {
     int len = 0;
 
-    if (mode == 0){
+    if (mode == 0)
         for (int i = sscanf->stringdx;
             !(c_in_str(str, sscanf->string[sscanf->stringdx]))
-            && ((data[0] + i) < data[1] || data[1] == 0); i++){
+            && ((data[0] + i) < data[1] || data[1] == 0)
+            && sscanf->string[i] != '\0'; i++){
             len += 1;
             sscanf->stringdx += 1;
         }
-    }
-    if (mode == 1){
+    if (mode == 1)
         for (int i = sscanf->stringdx;
             c_in_str(str, sscanf->string[sscanf->stringdx])
-            && ((data[0] + i) < data[1] || data[1] == 0); i++){
+            && ((data[0] + i) < data[1] || data[1] == 0)
+            && sscanf->string[i] != '\0'; i++){
             len += 1;
             sscanf->stringdx += 1;
         }
-    }
     return len;
 }
 

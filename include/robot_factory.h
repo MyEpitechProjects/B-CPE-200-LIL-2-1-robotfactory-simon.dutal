@@ -41,6 +41,14 @@ typedef struct factory_flg {
     int file_empty;
 } factflg_t;
 
+typedef struct factory_arg {
+    char type;
+    int int_val;
+    char char_val;
+    char *label_name;
+    short short_val;
+} factarg_t;
+
 typedef struct factory_inst {
     char opcode;
     char encoding_byte;
