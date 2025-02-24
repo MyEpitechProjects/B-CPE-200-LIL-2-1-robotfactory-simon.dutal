@@ -42,7 +42,7 @@ static int verify_reg(char *arg)
         return -2;
     my_sscanf(arg, "%d", &val);
     if (val <= REG_NUMBER)
-        return 0;
+        return T_REG;
     return -2;
 }
 

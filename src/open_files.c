@@ -9,7 +9,11 @@
 
 unsigned long my_ftell(FILE *f)
 {
-    return f->_offset;
+    long offset = f->_offset;
+
+    if (offset < 0)
+        return 0;
+    return offset;
 }
 
 unsigned long get_lenght(FILE *f)
