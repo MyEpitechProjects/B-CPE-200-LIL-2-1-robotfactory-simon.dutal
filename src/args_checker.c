@@ -14,7 +14,7 @@ static int verify_reg(char *arg)
     if (!my_string_is_int(arg))
         return -2;
     my_sscanf(arg, "%d", &val);
-    if (val <= REG_NUMBER)
+    if (val <= REG_NUMBER && val > 0)
         return T_REG;
     return -2;
 }

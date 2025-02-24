@@ -33,28 +33,24 @@ static int init_robot_flg(factory_t *robot)
     robot->flg.header_end = 0;
     robot->flg.name_gived = 0;
     robot->flg.file_empty = 1;
+    init_robot_header(robot);
     if (init_robot_inst(robot) == 84)
         return 84;
     return 0;
 }
 
-int init_robot(int argc, char **argv, factory_t *robot)
+int init_robot(int arg_idx, char **argv, factory_t *robot)
 {
     robot->offset = 0;
     robot->input = NULL;
-    if (argc != 2)
-        return 84;
-    if (my_strlen(argv[1]) > 255)
-        return 84;
-    my_strcpy(robot->input_name, argv[1]);
-    if (!my_strcmp(argv[1], "-h"))
-        return help();
-    if (open_files(robot, argv) == 84)
-        return free_robot(robot, 84);
     robot->idx = 0;
     robot->split = NULL;
-    init_robot_header(robot);
     if (init_robot_flg(robot) == 84)
+        return free_robot(robot, 84);
+    if (my_strlen(argv[arg_idx]) > 255)
+        return free_robot(robot, 84);
+    my_strcpy(robot->input_name, argv[arg_idx]);
+    if (open_files(robot) == 84)
         return free_robot(robot, 84);
     return 0;
 }

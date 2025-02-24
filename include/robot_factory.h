@@ -70,9 +70,9 @@ extern const char *messages_err[];
 
 int handle_line(factory_t *robot);
 unsigned int my_list_len(char **value);
-int init_robot(int argc, char **argv, factory_t *robot);
-int help(void);
-int open_files(factory_t *robot, char **argv);
+int init_robot(int arg_idx, char **argv, factory_t *robot);
+int help(char **argv, int silent, int ret_value);
+int open_files(factory_t *robot);
 int change_int_order(unsigned int num);
 int write_output(factory_t *robot);
 int robot_warn(factory_t *robot, int message_id, int line);

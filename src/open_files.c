@@ -33,9 +33,9 @@ int ffclose(FILE *f, int ret_value)
     return ret_value;
 }
 
-int open_files(factory_t *robot, char **argv)
+int open_files(factory_t *robot)
 {
-    FILE *in = fopen(argv[1], "rb");
+    FILE *in = fopen(robot->input_name, "rb");
     char *str;
 
     if (in == NULL)

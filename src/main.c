@@ -8,9 +8,23 @@
 #include "robot_factory.h"
 
 
-int help(void)
+int help(char **argv, int silent, int ret_value)
 {
-    return 0;
+    if (silent == 0)
+        my_putstr("USAGE\n");
+    if (silent == 1)
+        my_putstr("Usage: ");
+    my_putstr(argv[0]);
+    my_putstr(" file_name[.s] ....\n");
+    if (silent == 0){
+        my_putstr("DESCRIPTION\n");
+        my_putstr("file_name file in assembly ");
+        my_putstr("language to be converted into ");
+        my_putstr("file_name.cor, ");
+        my_putstr("an executable in the ");
+        my_putstr("Virtual Machine.\n");
+    }
+    return ret_value;
 }
 
 int start(factory_t *robot)
@@ -27,21 +41,21 @@ int start(factory_t *robot)
             continue;
         x = handle_line(robot);
         if (x == 84)
-            return 84;
+            return free_robot(robot, 84);
         free_list(robot->split, 0);
         robot->split = NULL;
     }
     return 0;
 }
 
-int main(int argc, char **argv)
+int robot_loop(char **argv, int argv_idx)
 {
     int x = 0;
     factory_t *robot = malloc(sizeof(factory_t));
 
     if (robot == NULL)
         return 84;
-    if (init_robot(argc, argv, robot) == 84)
+    if (init_robot(argv_idx, argv, robot) == 84)
         return 84;
     x = start(robot);
     if (x == 84)
@@ -50,4 +64,21 @@ int main(int argc, char **argv)
     if (x == 84)
         return 84;
     return write_output(robot);
+}
+
+int main(int argc, char **argv)
+{
+    int x = 0;
+    int x2 = 0;
+
+    if (argc < 2)
+        return help(argv, 1, 84);
+    if (!my_strcmp(argv[1], "-h"))
+        return help(argv, 0, 0);
+    for (int i = 1; i < argc; i++){
+        x2 = robot_loop(argv, i);
+        if (x2 == 84)
+            x = 84;
+    }
+    return x;
 }
