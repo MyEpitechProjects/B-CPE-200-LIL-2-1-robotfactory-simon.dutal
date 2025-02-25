@@ -69,9 +69,12 @@ int check_arg(factory_t *robot, op_t inst, int fix)
 
     for (int i = fix; robot->split[i] != NULL; i++){
         my_arg = get_args_type(robot->split[i]);
-        if (my_arg < 0 ||
-            !is_arg_possible(my_arg, inst.type[i - fix])){
+        if (my_arg < 0){
             robot_err(robot, 9 + my_arg, robot->idx + 1);
+            return 84;
+        }
+        if (!is_arg_possible(my_arg, inst.type[i - fix])){
+            robot_err(robot, BAD_ARG, robot->idx + 1);
             return 84;
         }
     }
