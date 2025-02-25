@@ -7,6 +7,28 @@
 
 #include "robot_factory.h"
 
+static bool is_labal_char_valid(char l)
+{
+    char *str = LABEL_CHARS;
+
+    for (int i = 0; str[i] != '\0'; i++){
+        if (str[i] == l)
+            return true;
+    }
+    return false;
+}
+
+bool is_label_valid(char *label)
+{
+    if (label == NULL || my_strlen(label) < 1)
+        return false;
+    for (int i = 0; label[i] != '\0'; i++){
+        if (!is_labal_char_valid(label[i]))
+            return false;
+    }
+    return true;
+}
+
 static int verify_reg(char *arg)
 {
     int val = 0;
@@ -67,12 +89,20 @@ char get_encoding_byte(op_t inst, factory_t *robot, int fix)
 {
     int value = 6;
     int res = 0;
+    int type = 0;
+    int arg_type = 0;
 
-    if (inst.nbr_args < 2)
-        return -1;
     for (int i = fix; robot->split[i] != NULL; i++){
-        res += (get_args_type(robot->split[i]) << value);
-        value = value - 2;
+        type = inst.type[i - fix];
+        arg_type = get_args_type(robot->split[i]);
+        if (arg_type == 4)
+            arg_type = 3;
+        if ((type != 2 && type != 4)){
+            res += (arg_type << value);
+            value = value - 2;
+        }
     }
+    if (res == 0)
+        return -1;
     return res;
 }

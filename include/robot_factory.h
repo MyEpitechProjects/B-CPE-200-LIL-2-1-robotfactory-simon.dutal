@@ -83,9 +83,11 @@ int free_list(char **lst, int ret_value);
 int check_err(factory_t *robot);
 int my_put_nbr_err(int nb);
 int push_inst(factory_t *robot, int opcode, int encoding_byte);
-int handle_inst(factory_t *robot);
+int handle_inst(factory_t *robot, int fix);
 char get_encoding_byte(op_t inst, factory_t *robot, int fix);
 int check_arg(factory_t *robot, op_t inst, int fix);
 bool is_arg_possible(char arg, char possible_arg);
 void *secure_realloc(void *pointer, size_t size);
+bool is_label_valid(char *label);
+char **my_pysplit(char *str, char delimiter);
 #endif

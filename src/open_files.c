@@ -46,7 +46,7 @@ int open_files(factory_t *robot)
     fread(str, 1, get_lenght(in), in);
     str[get_lenght(in)] = '\0';
     ffclose(in, 0);
-    robot->input = my_split(str, "\n", '\0');
+    robot->input = my_pysplit(str, '\n');
     free(str);
     return 0;
 }

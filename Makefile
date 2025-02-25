@@ -20,7 +20,8 @@ SRC	=	src/op.c\
 		src/free_robot.c\
 		src/handle_inst.c\
 		src/list_push.c\
-		src/args_checker.c
+		src/args_checker.c\
+		src/my_pysplit.c
 
 OBJ	= $(SRC:.c=.o)
 

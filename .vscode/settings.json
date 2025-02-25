@@ -4,6 +4,13 @@
         "my_puts_warn": "cpp",
         "*.tcc": "cpp",
         "op.h": "c",
-        "robot_factory.h": "c"
+        "robot_factory.h": "c",
+        "optional": "c",
+        "system_error": "c",
+        "array": "c",
+        "functional": "c",
+        "tuple": "c",
+        "type_traits": "c",
+        "utility": "c"
     }
 }
