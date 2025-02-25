@@ -13,7 +13,7 @@ int my_string_is_int(const char *str)
 
     if (str == NULL)
         return 0;
-    if (str[0] == '-')
+    if (str[0] == '-' || str[0] == '+')
         start = 1;
     for (int i = start; str[i] != '\0'; i++){
         if (str[i] < '0' || str[i] > '9')
