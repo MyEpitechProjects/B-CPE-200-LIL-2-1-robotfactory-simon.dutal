@@ -31,7 +31,7 @@ CFLAGS  = -Wall -Wextra -fanalyzer
 
 LIB_BIN = -lmy_sscanf -lmy_string
 
-LFLAGS	= -I include -L./lib/bin $(LIB_BIN) -Wl,-rpath,./lib/bin
+LFLAGS	= -I include -L./lib/bin $(LIB_BIN)
 
 all: mylib
 	$(CC) -c $(SRC) $(CFLAGS) $(LFLAGS)

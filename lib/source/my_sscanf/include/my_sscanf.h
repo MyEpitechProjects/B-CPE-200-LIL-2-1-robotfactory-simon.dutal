@@ -5,12 +5,8 @@
 ** header
 */
 
-#ifndef LIBMY_H
-    #define LIBMY_H
-    #ifdef __GNUC__
-        #define INTERNAL __attribute__((visibility("hidden")))
-    #endif
-
+#ifndef LIBSCANF_H
+    #define LIBSCANF_H
     #include <stdio.h>
     #include <stdlib.h>
     #include <unistd.h>

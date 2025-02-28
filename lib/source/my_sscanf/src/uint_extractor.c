@@ -7,7 +7,7 @@
 
 #include "my_sscanf.h"
 
-INTERNAL void extract_uint(sscanf_t *sscanf)
+void extract_uint(sscanf_t *sscanf)
 {
     unsigned int number = 0;
     unsigned int *val;
@@ -25,7 +25,7 @@ INTERNAL void extract_uint(sscanf_t *sscanf)
     }
 }
 
-INTERNAL void extract_uint_long(sscanf_t *sscanf)
+void extract_uint_long(sscanf_t *sscanf)
 {
     unsigned long number = 0;
     unsigned long *val;
@@ -43,7 +43,7 @@ INTERNAL void extract_uint_long(sscanf_t *sscanf)
     }
 }
 
-INTERNAL void extract_uint_long_long(sscanf_t *sscanf)
+void extract_uint_long_long(sscanf_t *sscanf)
 {
     unsigned long long int number = 0;
     unsigned long long *val;
@@ -61,7 +61,7 @@ INTERNAL void extract_uint_long_long(sscanf_t *sscanf)
     }
 }
 
-INTERNAL void extract_uint_short(sscanf_t *sscanf)
+void extract_uint_short(sscanf_t *sscanf)
 {
     unsigned short number = 0;
     unsigned short *val;

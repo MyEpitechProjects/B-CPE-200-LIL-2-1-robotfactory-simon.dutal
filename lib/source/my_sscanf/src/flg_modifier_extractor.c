@@ -29,7 +29,7 @@ static void extract_flg_modifier_one(sscanf_t *sscanf, char c)
         sscanf->flg_modifier = 7;
 }
 
-INTERNAL void extract_flg_modifier(sscanf_t *sscanf)
+void extract_flg_modifier(sscanf_t *sscanf)
 {
     char str[3];
 

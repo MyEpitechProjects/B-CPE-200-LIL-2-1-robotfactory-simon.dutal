@@ -65,7 +65,7 @@ static char *load_string_arg(sscanf_t *sscanf)
     return NULL;
 }
 
-INTERNAL void extract_string(sscanf_t *sscanf, int max)
+void extract_string(sscanf_t *sscanf, int max)
 {
     int len = 0;
     char *s = load_string_arg(sscanf);
@@ -84,7 +84,7 @@ INTERNAL void extract_string(sscanf_t *sscanf, int max)
         s[len] = '\0';
 }
 
-INTERNAL void extract_char(sscanf_t *sscanf)
+void extract_char(sscanf_t *sscanf)
 {
     char *s;
     char c;
@@ -112,7 +112,7 @@ static int get_sub_string_len(sscanf_t *sscanf)
     return count;
 }
 
-INTERNAL char *get_sub_string(sscanf_t *sscanf)
+char *get_sub_string(sscanf_t *sscanf)
 {
     int count = get_sub_string_len(sscanf);
     char *res = malloc(sizeof(char) * (count + 1));
@@ -131,7 +131,7 @@ INTERNAL char *get_sub_string(sscanf_t *sscanf)
     return res;
 }
 
-INTERNAL void extract_string_until(sscanf_t *sscanf, int max, char *str)
+void extract_string_until(sscanf_t *sscanf, int max, char *str)
 {
     int len = 0;
     char *s = load_string_arg(sscanf);
@@ -151,7 +151,7 @@ INTERNAL void extract_string_until(sscanf_t *sscanf, int max, char *str)
         s[len] = '\0';
 }
 
-INTERNAL void extract_string_while(sscanf_t *sscanf, int max, char *str)
+void extract_string_while(sscanf_t *sscanf, int max, char *str)
 {
     int len = 0;
     char *s = load_string_arg(sscanf);

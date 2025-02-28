@@ -7,7 +7,7 @@
 
 #include "my_sscanf.h"
 
-INTERNAL int get_number_len(sscanf_t *sscanf)
+int get_number_len(sscanf_t *sscanf)
 {
     int res = 0;
 
@@ -16,7 +16,7 @@ INTERNAL int get_number_len(sscanf_t *sscanf)
     return res;
 }
 
-INTERNAL int get_number(sscanf_t *sscanf)
+int get_number(sscanf_t *sscanf)
 {
     int res = 0;
 
@@ -29,7 +29,7 @@ INTERNAL int get_number(sscanf_t *sscanf)
     return res;
 }
 
-INTERNAL int get_number_long(sscanf_t *sscanf)
+int get_number_long(sscanf_t *sscanf)
 {
     long res = 0;
 
@@ -42,7 +42,7 @@ INTERNAL int get_number_long(sscanf_t *sscanf)
     return res;
 }
 
-INTERNAL int get_number_long_long(sscanf_t *sscanf)
+int get_number_long_long(sscanf_t *sscanf)
 {
     long long res = 0;
 

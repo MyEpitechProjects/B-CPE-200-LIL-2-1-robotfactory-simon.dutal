@@ -23,7 +23,7 @@ static char fix_char(char ch)
     return ch;
 }
 
-INTERNAL void extract_hex(sscanf_t *sscanf)
+void extract_hex(sscanf_t *sscanf)
 {
     int result = 0;
     int *val;
@@ -44,7 +44,7 @@ INTERNAL void extract_hex(sscanf_t *sscanf)
     }
 }
 
-INTERNAL void extract_hex_long(sscanf_t *sscanf)
+void extract_hex_long(sscanf_t *sscanf)
 {
     long int result = 0;
     long int *val;
@@ -65,7 +65,7 @@ INTERNAL void extract_hex_long(sscanf_t *sscanf)
     }
 }
 
-INTERNAL void extract_hex_long_long(sscanf_t *sscanf)
+void extract_hex_long_long(sscanf_t *sscanf)
 {
     long long int result = 0;
     long long int *val;
@@ -86,7 +86,7 @@ INTERNAL void extract_hex_long_long(sscanf_t *sscanf)
     }
 }
 
-INTERNAL void extract_hex_short(sscanf_t *sscanf)
+void extract_hex_short(sscanf_t *sscanf)
 {
     short result = 0;
     short *val;

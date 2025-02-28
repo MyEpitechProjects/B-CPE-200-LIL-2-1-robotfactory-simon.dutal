@@ -7,7 +7,7 @@
 
 #include "my_sscanf.h"
 
-INTERNAL void extract_int_intmax_t(sscanf_t *sscanf)
+void extract_int_intmax_t(sscanf_t *sscanf)
 {
     intmax_t number = 0;
     intmax_t *val;
@@ -27,7 +27,7 @@ INTERNAL void extract_int_intmax_t(sscanf_t *sscanf)
     }
 }
 
-INTERNAL void extract_int_ptrdiff_t(sscanf_t *sscanf)
+void extract_int_ptrdiff_t(sscanf_t *sscanf)
 {
     ptrdiff_t number = 0;
     ptrdiff_t *val;
@@ -47,7 +47,7 @@ INTERNAL void extract_int_ptrdiff_t(sscanf_t *sscanf)
     }
 }
 
-INTERNAL void extract_uint_size_t(sscanf_t *sscanf)
+void extract_uint_size_t(sscanf_t *sscanf)
 {
     size_t number = 0;
     size_t *val;

@@ -7,7 +7,7 @@
 
 #include "my_sscanf.h"
 
-INTERNAL void extract_int(sscanf_t *sscanf)
+void extract_int(sscanf_t *sscanf)
 {
     int number = 0;
     int *val;
@@ -25,7 +25,7 @@ INTERNAL void extract_int(sscanf_t *sscanf)
     }
 }
 
-INTERNAL void extract_int_long(sscanf_t *sscanf)
+void extract_int_long(sscanf_t *sscanf)
 {
     long int number = 0;
     long int *val;
@@ -43,7 +43,7 @@ INTERNAL void extract_int_long(sscanf_t *sscanf)
     }
 }
 
-INTERNAL void extract_int_long_long(sscanf_t *sscanf)
+void extract_int_long_long(sscanf_t *sscanf)
 {
     long long int number = 0;
     long long int *val;
@@ -61,7 +61,7 @@ INTERNAL void extract_int_long_long(sscanf_t *sscanf)
     }
 }
 
-INTERNAL void extract_int_short(sscanf_t *sscanf)
+void extract_int_short(sscanf_t *sscanf)
 {
     short number = 0;
     short *val;
@@ -79,7 +79,7 @@ INTERNAL void extract_int_short(sscanf_t *sscanf)
     }
 }
 
-INTERNAL void skip_space(sscanf_t *sscanf)
+void skip_space(sscanf_t *sscanf)
 {
     for (int i = sscanf->stringdx;
         (is_end_str(sscanf->string[sscanf->stringdx])); i++)

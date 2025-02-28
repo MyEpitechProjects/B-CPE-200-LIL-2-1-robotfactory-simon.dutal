@@ -7,7 +7,7 @@
 
 #include "my_sscanf.h"
 
-INTERNAL int my_strlen(char *c)
+int my_scanf_strlen(char *c)
 {
     int idx = 0;
 
@@ -16,7 +16,7 @@ INTERNAL int my_strlen(char *c)
     return idx;
 }
 
-INTERNAL int free_struct(sscanf_t *sscanf, int retval)
+int free_struct(sscanf_t *sscanf, int retval)
 {
     if (sscanf->string != NULL)
         free(sscanf->string);
@@ -27,7 +27,7 @@ INTERNAL int free_struct(sscanf_t *sscanf, int retval)
     return retval;
 }
 
-INTERNAL int init_sscanf(sscanf_t *sscanf, char *string, char *format)
+int init_sscanf(sscanf_t *sscanf, char *string, char *format)
 {
     if (sscanf == NULL)
         return 84;
@@ -36,12 +36,12 @@ INTERNAL int init_sscanf(sscanf_t *sscanf, char *string, char *format)
     if (string == NULL || format == NULL ||
         string[0] == '\0' || format[0] == '\0')
         return free_struct(sscanf, 84);
-    sscanf->stringlen = my_strlen(string);
-    sscanf->formatlen = my_strlen(format);
+    sscanf->stringlen = my_scanf_strlen(string);
+    sscanf->formatlen = my_scanf_strlen(format);
     sscanf->stringdx = 0;
     sscanf->formatdx = 0;
-    sscanf->string = malloc(sizeof(char) * (my_strlen(string) + 1));
-    sscanf->format = malloc(sizeof(char) * (my_strlen(format) + 1));
+    sscanf->string = malloc(sizeof(char) * (my_scanf_strlen(string) + 1));
+    sscanf->format = malloc(sizeof(char) * (my_scanf_strlen(format) + 1));
     if (sscanf->string == NULL || sscanf->format == NULL)
         return free_struct(sscanf, 84);
     strcpy(sscanf->string, string);

@@ -76,7 +76,7 @@ static void choose_special_string(sscanf_t *sscanf, int max)
         free(str);
 }
 
-INTERNAL void choose_flg(sscanf_t *sscanf)
+void choose_flg(sscanf_t *sscanf)
 {
     int max = sscanf->max;
     char c = sscanf->format[sscanf->formatdx];

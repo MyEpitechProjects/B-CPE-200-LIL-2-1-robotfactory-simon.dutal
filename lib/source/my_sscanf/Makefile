@@ -5,7 +5,7 @@
 ## Makefile
 ##
 
-NAME	= libmy_sscanf.so
+NAME	= libmy_sscanf.a
 
 SRC	=	src/extractor_chooser.c\
 		src/flg_modifier_extractor.c\
@@ -23,18 +23,21 @@ OBJ	= $(SRC:.c=.o)
 
 CC	= gcc
 
-CFLAGS  = -shared -fPIC -Wall -Wextra -fanalyzer
+CFLAGS  = -Wall -Wextra -fanalyzer
 
 LFLAGS	= -I include
 
-all:
-	$(CC) -c $(SRC) $(CFLAGS) $(LFLAGS)
-	@mv $(notdir $(OBJ)) src
-	$(CC) -o $(NAME) $(OBJ) $(CFLAGS) $(LFLAGS)
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	ar rcs $(NAME) $(OBJ)
 	mv $(NAME) ../../bin
+
+%.o: %.c
+	$(CC) -c $< -o $@ $(CFLAGS) $(LFLAGS)
 
 clean:
 	@rm -f ../../bin/$(NAME)
 	@rm -f $(OBJ)
 
-re: fclean all
+re: clean all

@@ -5,7 +5,7 @@
 ## Makefile
 ##
 
-NAME	= libmy_string.so
+NAME	= libmy_string.a
 
 SRC	=	src/my_puterr.c\
 		src/my_putstr.c\
@@ -22,19 +22,21 @@ OBJ	= $(SRC:.c=.o)
 
 CC	= gcc
 
-CFLAGS  = -shared -fPIC -Wall -Wextra -fanalyzer
+CFLAGS  = -Wall -Wextra -fanalyzer
 
 LFLAGS	= -I include
 
+all: $(NAME)
 
-all:
-	$(CC) -c $(SRC) $(CFLAGS) $(LFLAGS)
-	@mv $(notdir $(OBJ)) src
-	$(CC) -o $(NAME) $(OBJ) $(CFLAGS) $(LFLAGS)
+$(NAME): $(OBJ)
+	ar rcs $(NAME) $(OBJ)
 	mv $(NAME) ../../bin
+
+%.o: %.c
+	$(CC) -c $< -o $@ $(CFLAGS) $(LFLAGS)
 
 clean:
 	@rm -f ../../bin/$(NAME)
 	@rm -f $(OBJ)
 
-re: fclean all
+re: clean all

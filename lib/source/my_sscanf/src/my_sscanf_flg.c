@@ -7,7 +7,7 @@
 
 #include "my_sscanf.h"
 
-INTERNAL int is_flg(char c)
+int is_flg(char c)
 {
     if (c == 'd' || c == 'i' || c == 'x' || c == 'X' ||
         c == 'c' || c == 'f' || c == 'u' ||
@@ -16,19 +16,19 @@ INTERNAL int is_flg(char c)
     return 0;
 }
 
-INTERNAL int is_number(char c)
+int is_number(char c)
 {
     return (c >= 48 && c <= 57);
 }
 
-INTERNAL int is_end_str(char c)
+int is_end_str(char c)
 {
     if (c == '\t' || c == ' ' || c == '\0')
         return 1;
     return 0;
 }
 
-INTERNAL void extract_flg(sscanf_t *sscanf)
+void extract_flg(sscanf_t *sscanf)
 {
     int max = 0;
 
@@ -43,7 +43,7 @@ INTERNAL void extract_flg(sscanf_t *sscanf)
     choose_flg(sscanf);
 }
 
-INTERNAL void handle_flg(sscanf_t *sscanf)
+void handle_flg(sscanf_t *sscanf)
 {
     sscanf->ignore = 0;
     sscanf->formatdx += 1;

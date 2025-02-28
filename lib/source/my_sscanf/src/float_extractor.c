@@ -7,7 +7,7 @@
 
 #include "my_sscanf.h"
 
-INTERNAL void extract_float(sscanf_t *sscanf)
+void extract_float(sscanf_t *sscanf)
 {
     float value[] = {0, 0};
     float *val;
@@ -27,7 +27,7 @@ INTERNAL void extract_float(sscanf_t *sscanf)
     }
 }
 
-INTERNAL void extract_double(sscanf_t *sscanf)
+void extract_double(sscanf_t *sscanf)
 {
     double value[] = {0, 0};
     double *val;
@@ -47,7 +47,7 @@ INTERNAL void extract_double(sscanf_t *sscanf)
     }
 }
 
-INTERNAL void extract_double_long(sscanf_t *sscanf)
+void extract_double_long(sscanf_t *sscanf)
 {
     long double value[] = {0, 0};
     long double *val;
