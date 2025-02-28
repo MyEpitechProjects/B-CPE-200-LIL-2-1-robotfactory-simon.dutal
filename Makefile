@@ -21,7 +21,11 @@ SRC	=	src/op.c\
 		src/handle_inst.c\
 		src/list_push.c\
 		src/args_checker.c\
-		src/my_pysplit.c
+		src/my_pysplit.c\
+		src/list_len.c\
+		src/robot_offset.c\
+		src/push_arg_list.c\
+		src/swrite.c
 
 OBJ	= $(SRC:.c=.o)
 

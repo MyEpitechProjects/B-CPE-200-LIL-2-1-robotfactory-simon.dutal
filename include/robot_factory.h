@@ -34,6 +34,14 @@
     #define COMM_LONG 15
     #define UNDEF_LABEL 16
 
+    /* SIZE TYPE COMPILED */
+    #define IND_LAB 1
+    #define IND_SHORT 2
+    #define DIR_SHORT 2
+    #define DIR_LAB 1
+    #define DIR_INT 3
+    #define REG_CHAR 4
+
 typedef struct factory_flg {
     int header_end;
     int name_gived;
@@ -52,7 +60,20 @@ typedef struct factory_arg {
 typedef struct factory_inst {
     char opcode;
     char encoding_byte;
+    struct factory_arg *args;
 } factinst_t;
+
+typedef struct factory_label {
+    int offset;
+    char *label;
+} factlab_t;
+
+typedef struct swrite {
+    unsigned int pos;
+    unsigned int size;
+    void *buffer;
+} swrite_t;
+
 
 typedef struct factory {
     char input_name[256];
@@ -60,6 +81,8 @@ typedef struct factory {
     int idx;
     int offset;
     char **input;
+    struct swrite *output;
+    struct factory_label *label;
     struct factory_flg flg;
     struct header_s header;
     struct factory_inst *inst;
@@ -82,7 +105,8 @@ int free_robot(factory_t *robot, int ret_value);
 int free_list(char **lst, int ret_value);
 int check_err(factory_t *robot);
 int my_put_nbr_err(int nb);
-int push_inst(factory_t *robot, int opcode, int encoding_byte);
+int push_inst(factory_t *robot, int opcode,
+    int encoding_byte, factarg_t args[]);
 int handle_inst(factory_t *robot, int fix);
 char get_encoding_byte(op_t inst, factory_t *robot, int fix);
 int check_arg(factory_t *robot, op_t inst, int fix);
@@ -90,4 +114,16 @@ bool is_arg_possible(char arg, char possible_arg);
 void *secure_realloc(void *pointer, size_t size);
 bool is_label_valid(char *label);
 char **my_pysplit(char *str, char delimiter);
+int get_inst_list_len(factinst_t *tmp);
+int get_label_list_len(factlab_t *tmp);
+int push_label(factory_t *robot, char *label);
+void get_type_size(factory_t *robot, char type, char inst);
+char is_dir_size_2(char inst);
+void extract_args(factory_t *robot, factarg_t args[], int fix, char inst);
+int get_args_type(char *arg);
+swrite_t *swrite_init(int size);
+int swrite_write(void *buffer, int size, swrite_t *fd);
+int swrite_to_file(swrite_t *fd, FILE *fd2);
+
+
 #endif

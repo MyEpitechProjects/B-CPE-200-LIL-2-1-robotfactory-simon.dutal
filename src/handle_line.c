@@ -62,6 +62,8 @@ int extract_label(factory_t *robot)
             robot_err(robot, LAB_NAME, robot->idx + 1);
             return -1;
         }
+        if (push_label(robot, label) == 84)
+            return -1;
         return 1;
     }
     return 0;

@@ -27,6 +27,16 @@ static int init_robot_inst(factory_t *robot)
     return 0;
 }
 
+static int init_robot_label(factory_t *robot)
+{
+    robot->label = malloc(sizeof(factlab_t) * 1);
+    if (robot->label == NULL)
+        return 84;
+    robot->label[0].offset = -1;
+    robot->label[0].label = NULL;
+    return 0;
+}
+
 static int init_robot_flg(factory_t *robot)
 {
     robot->flg.comment_gived = 0;
@@ -35,6 +45,8 @@ static int init_robot_flg(factory_t *robot)
     robot->flg.file_empty = 1;
     init_robot_header(robot);
     if (init_robot_inst(robot) == 84)
+        return 84;
+    if (init_robot_label(robot) == 84)
         return 84;
     return 0;
 }
@@ -45,6 +57,7 @@ int init_robot(int arg_idx, char **argv, factory_t *robot)
     robot->input = NULL;
     robot->idx = 0;
     robot->split = NULL;
+    robot->output = NULL;
     if (init_robot_flg(robot) == 84)
         return free_robot(robot, 84);
     if (my_strlen(argv[arg_idx]) > 255)

@@ -16,7 +16,7 @@ int my_string_is_int(const char *str)
     if (str[0] == '-' || str[0] == '+')
         start = 1;
     for (int i = start; str[i] != '\0'; i++){
-        if (str[i] < '0' || str[i] > '9')
+        if (!my_char_is_int(str[i]))
             return 0;
     }
     return 1;

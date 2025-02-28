@@ -24,5 +24,9 @@ char *my_strncpy(char *dest, char const *src, int n);
 void my_memset(void *ptr, int size, char value);
 int my_put_nbr_err(int nb);
 int my_string_is_int(const char *str);
+bool my_char_is_int(char c);
+char my_atoc(char const *str);
+unsigned char my_atouc(char const *str);
+int my_atoi(char const *str);
 
 #endif

@@ -41,12 +41,13 @@ FILE *create_file(factory_t *robot)
     return f;
 }
 
-static int write_inst(FILE *f, factory_t *robot)
+static int write_inst(factory_t *robot)
 {
     for (int i = 0; robot->inst[i].opcode != 0; i++){
-        fwrite(&robot->inst[i].opcode, sizeof(char), 1, f);
+        swrite_write(&robot->inst[i].opcode, sizeof(char), robot->output);
         if (robot->inst[i].encoding_byte != -1)
-            fwrite(&robot->inst[i].encoding_byte, sizeof(char), 1, f);
+            swrite_write(&robot->inst[i].encoding_byte, sizeof(char),
+                robot->output);
     }
     return 0;
 }
@@ -55,10 +56,18 @@ int write_output(factory_t *robot)
 {
     FILE *f = create_file(robot);
 
+    robot->header.prog_size = change_int_order(robot->offset);
     if (f == NULL)
         return free_robot(robot, 84);
-    fwrite(&robot->header, sizeof(header_t), 1, f);
-    write_inst(f, robot);
+    robot->output = swrite_init(8 + PROG_NAME_LENGTH +
+        COMMENT_LENGTH + robot->offset);
+    if (robot->output == NULL){
+        fclose(f);
+        return free_robot(robot, 84);
+    }
+    swrite_write(&robot->header, sizeof(header_t), robot->output);
+    write_inst(robot);
+    swrite_to_file(robot->output, f);
     fclose(f);
     return free_robot(robot, 0);
 }

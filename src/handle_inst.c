@@ -7,22 +7,48 @@
 
 #include "robot_factory.h"
 
-int compute_inst(factory_t *robot, op_t inst, int fixed)
+static factarg_t *create_args_list(void)
 {
-    int fix = 0;
+    factarg_t *args = malloc(sizeof(factarg_t) * 5);
 
-    if (fixed == 0)
-        fix = 1;
-    else if (fixed == 1)
-        fix = 2;
+    if (args == NULL)
+        return NULL;
+    args[0].type = 0;
+    return args;
+}
+
+static int check(factory_t *robot, op_t inst, int fix)
+{
     if (my_list_len(robot->split) - fix > (unsigned int) inst.nbr_args){
         robot_err(robot, MANY_ARG, robot->idx + 1);
         return 84;
     }
     if (check_arg(robot, inst, fix) == 84)
         return 84;
-    push_inst(robot, inst.code, get_encoding_byte(inst, robot, fix));
     return 0;
+}
+
+int compute_inst(factory_t *robot, op_t inst, int fixed)
+{
+    int fix = 0;
+    int res = 0;
+    factarg_t *args = create_args_list();
+
+    if (args == NULL)
+        return 84;
+    if (fixed == 0)
+        fix = 1;
+    else if (fixed == 1)
+        fix = 2;
+    if (check(robot, inst, fix) == 84){
+        free(args);
+        return 84;
+    }
+    extract_args(robot, args, fix, inst.code);
+    robot->offset += 1;
+    res = push_inst(robot, inst.code,
+        get_encoding_byte(inst, robot, fix), args);
+    return res;
 }
 
 int handle_inst(factory_t *robot, int fix)

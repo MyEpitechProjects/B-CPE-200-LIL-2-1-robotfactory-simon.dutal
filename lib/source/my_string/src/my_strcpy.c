@@ -11,6 +11,8 @@ char *my_strcpy(char *dest, char const *src)
 {
     int index = 0;
 
+    if (dest == NULL || src == NULL)
+        return NULL;
     while (src[index] != '\0'){
         dest[index] = src[index];
         index += 1;
@@ -23,6 +25,8 @@ char *my_strncpy(char *dest, char const *src, int n)
 {
     int index = 0;
 
+    if (dest == NULL || src == NULL)
+        return NULL;
     while (src[index] != '\0' && index < n){
         dest[index] = src[index];
         index += 1;

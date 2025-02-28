@@ -98,6 +98,7 @@ char get_encoding_byte(op_t inst, factory_t *robot, int fix)
     for (int i = fix; robot->split[i] != NULL; i++){
         type = inst.type[i - fix];
         arg_type = get_args_type(robot->split[i]);
+        get_type_size(robot, arg_type, inst.code);
         if (arg_type == 4)
             arg_type = 3;
         if ((type != 2 && type != 4)){
@@ -107,5 +108,6 @@ char get_encoding_byte(op_t inst, factory_t *robot, int fix)
     }
     if (res == 0)
         return -1;
+    robot->offset += 1;
     return res;
 }
