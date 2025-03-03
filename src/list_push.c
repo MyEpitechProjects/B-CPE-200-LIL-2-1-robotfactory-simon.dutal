@@ -37,15 +37,18 @@ int push_inst(factory_t *robot, int opcode, int encoding_byte, factarg_t *args)
 int push_label(factory_t *robot, char *label)
 {
     int len = get_label_list_len(robot->label);
-    char *label_string = malloc(sizeof(char) * (my_strlen(label) + 1));
+    char *label_string = NULL;
 
+    if (get_label_offset(robot->label, label) != -1){
+        robot_err(robot, LAB_DEF, robot->idx + 1);
+        return 84;
+    }
+    label_string = malloc(sizeof(char) * (my_strlen(label) + 1));
     if (label_string == NULL)
         return 84;
     robot->label = secure_realloc(robot->label, sizeof(factlab_t) * (len + 1));
-    if (robot->label == NULL){
-        free(label_string);
-        return 84;
-    }
+    if (robot->label == NULL)
+        return my_free(label_string, 84);
     my_strcpy(label_string, label);
     robot->label[len].label = NULL;
     robot->label[len].offset = -1;

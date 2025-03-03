@@ -41,7 +41,7 @@ FILE *create_file(factory_t *robot)
     return f;
 }
 
-static short get_label_offset(factlab_t *lab, char *label)
+short get_label_offset(factlab_t *lab, char *label)
 {
     for (int i = 0; lab[i].offset != -1; i++){
         if (lab[i].label == NULL)

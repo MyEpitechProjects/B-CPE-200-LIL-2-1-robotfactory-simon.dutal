@@ -17,7 +17,13 @@ int free_list(char **lst, int ret_value)
     return ret_value;
 }
 
-int free_label(factory_t *robot)
+int my_free(void *value, int ret_value)
+{
+    free(value);
+    return ret_value;
+}
+
+static int free_label(factory_t *robot)
 {
     for (int i = 0; robot->label[i].offset != -1; i++){
         if (robot->label[i].label != NULL)
@@ -27,7 +33,7 @@ int free_label(factory_t *robot)
     return 0;
 }
 
-int free_args(factarg_t *args)
+static int free_args(factarg_t *args)
 {
     for (int i = 0; args[i].type != 0; i++){
         if (args[i].type == 1)
@@ -36,7 +42,7 @@ int free_args(factarg_t *args)
     return 0;
 }
 
-int free_inst(factory_t *robot)
+static int free_inst(factory_t *robot)
 {
     for (int i = 0; robot->inst[i].opcode != 0; i++){
         free_args(robot->inst[i].args);
