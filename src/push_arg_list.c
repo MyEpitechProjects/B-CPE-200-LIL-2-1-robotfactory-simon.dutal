@@ -14,7 +14,7 @@ static int get_arg_value_type(char *arg, int type, char inst)
     if (type == 2){
         if (arg[1] == LABEL_CHAR)
             return DIR_LAB;
-        if (is_dir_size_2(inst))
+        if (is_dir_size_2(inst) == 2)
             return DIR_SHORT;
         else
             return DIR_INT;

@@ -46,6 +46,7 @@ int push_label(factory_t *robot, char *label)
         free(label_string);
         return 84;
     }
+    my_strcpy(label_string, label);
     robot->label[len].label = NULL;
     robot->label[len].offset = -1;
     robot->label[len - 1].offset = robot->offset;

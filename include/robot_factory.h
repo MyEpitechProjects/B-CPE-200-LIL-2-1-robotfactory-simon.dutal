@@ -96,7 +96,8 @@ unsigned int my_list_len(char **value);
 int init_robot(int arg_idx, char **argv, factory_t *robot);
 int help(char **argv, int silent, int ret_value);
 int open_files(factory_t *robot);
-int change_int_order(unsigned int num);
+int change_int_order(int num);
+int change_short_order(short num);
 int write_output(factory_t *robot);
 int robot_warn(factory_t *robot, int message_id, int line);
 int robot_err(factory_t *robot, int message_id, int line);
@@ -124,6 +125,7 @@ int get_args_type(char *arg);
 swrite_t *swrite_init(int size);
 int swrite_write(void *buffer, int size, swrite_t *fd);
 int swrite_to_file(swrite_t *fd, FILE *fd2);
+int swrite_w_rev(void *buffer, int size, swrite_t *fd);
 
 
 #endif

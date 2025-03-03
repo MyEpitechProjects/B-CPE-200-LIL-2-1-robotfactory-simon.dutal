@@ -44,8 +44,8 @@ int init_sscanf(sscanf_t *sscanf, char *string, char *format)
     sscanf->format = malloc(sizeof(char) * (my_scanf_strlen(format) + 1));
     if (sscanf->string == NULL || sscanf->format == NULL)
         return free_struct(sscanf, 84);
-    strcpy(sscanf->string, string);
-    strcpy(sscanf->format, format);
+    my_strcpy(sscanf->string, string);
+    my_strcpy(sscanf->format, format);
     return 0;
 }
 

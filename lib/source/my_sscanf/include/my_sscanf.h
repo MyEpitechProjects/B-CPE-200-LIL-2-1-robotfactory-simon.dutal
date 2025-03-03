@@ -66,5 +66,6 @@ void extract_string_while(sscanf_t *sscanf, int max, char *str);
 void extract_string_until(sscanf_t *sscanf, int max, char *str);
 char *get_sub_string(sscanf_t *sscanf);
 void skip_space(sscanf_t *sscanf);
+char *my_strcpy(char *dest, char const *src);
 
 #endif
