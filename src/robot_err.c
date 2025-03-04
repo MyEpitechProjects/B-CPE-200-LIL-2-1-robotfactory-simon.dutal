@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2024
 ** robot_factory
 ** File description:
-** op.h
+** robot_err
 */
 
 #include "robot_factory.h"
@@ -28,6 +28,7 @@ const char *messages_err[] = {
     NULL
 };
 
+//prints the corresponding error message
 int robot_err(factory_t *robot, int message_id, int line)
 {
     extern const char *messages_err[];
@@ -46,6 +47,7 @@ int robot_err(factory_t *robot, int message_id, int line)
     return 0;
 }
 
+//prints the corresponding warning message
 int robot_warn(factory_t *robot, int message_id, int line)
 {
     extern const char *messages_err[];
@@ -64,6 +66,7 @@ int robot_warn(factory_t *robot, int message_id, int line)
     return 0;
 }
 
+//TODO: comment
 int check_err(factory_t *robot)
 {
     if (robot->flg.file_empty == 1){

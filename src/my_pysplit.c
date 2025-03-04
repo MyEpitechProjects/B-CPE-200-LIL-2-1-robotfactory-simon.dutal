@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2025
 ** my_sudo
 ** File description:
-** split
+** my_pysplit
 */
 
 #include <stdlib.h>
@@ -51,6 +51,7 @@ static void fix(int number, int idx, char **result)
     }
 }
 
+//split, python style
 char **my_pysplit(char *str, char delimiter)
 {
     int number = calc_token_num(str, delimiter);

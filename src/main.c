@@ -2,12 +2,12 @@
 ** EPITECH PROJECT, 2024
 ** robot_factory
 ** File description:
-** op.h
+** main
 */
 
 #include "robot_factory.h"
 
-
+//prints the help message
 int help(char **argv, int silent, int ret_value)
 {
     if (silent == 0)
@@ -66,6 +66,8 @@ int robot_loop(char **argv, int argv_idx)
     return write_output(robot);
 }
 
+//checks and goes through all the arguments,
+//displaying the help and transcribing the valid files
 int main(int argc, char **argv)
 {
     int x = 0;

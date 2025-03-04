@@ -2,11 +2,13 @@
 ** EPITECH PROJECT, 2024
 ** robot_factory
 ** File description:
-** op.h
+** list_push
 */
 
 #include "robot_factory.h"
 
+//realloc with security wrapper
+//TODO: why is this here?
 void *secure_realloc(void *pointer, size_t size)
 {
     void *tmp = pointer;
@@ -19,6 +21,7 @@ void *secure_realloc(void *pointer, size_t size)
     return pointer;
 }
 
+//TODO: comments
 int push_inst(factory_t *robot, int opcode, int encoding_byte, factarg_t *args)
 {
     int len = get_inst_list_len(robot->inst);

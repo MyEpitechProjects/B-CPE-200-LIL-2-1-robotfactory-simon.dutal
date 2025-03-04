@@ -2,11 +2,12 @@
 ** EPITECH PROJECT, 2024
 ** robot_factory
 ** File description:
-** op.h
+** free_robot
 */
 
 #include "robot_factory.h"
 
+//frees the given list of strings
 int free_list(char **lst, int ret_value)
 {
     if (lst == NULL)
@@ -23,6 +24,7 @@ int my_free(void *value, int ret_value)
     return ret_value;
 }
 
+//frees the data related to the label of the given struct
 static int free_label(factory_t *robot)
 {
     for (int i = 0; robot->label[i].offset != -1; i++){
@@ -33,6 +35,7 @@ static int free_label(factory_t *robot)
     return 0;
 }
 
+//frees the args data
 static int free_args(factarg_t *args)
 {
     for (int i = 0; args[i].type != 0; i++){
@@ -42,6 +45,7 @@ static int free_args(factarg_t *args)
     return 0;
 }
 
+//frees the instruction data
 static int free_inst(factory_t *robot)
 {
     for (int i = 0; robot->inst[i].opcode != 0; i++){
@@ -52,6 +56,7 @@ static int free_inst(factory_t *robot)
     return 0;
 }
 
+//frees everything
 int free_robot(factory_t *robot, int ret_value)
 {
     if (robot == NULL)

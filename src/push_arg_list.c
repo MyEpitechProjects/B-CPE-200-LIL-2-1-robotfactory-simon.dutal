@@ -2,11 +2,12 @@
 ** EPITECH PROJECT, 2024
 ** robot_factory
 ** File description:
-** op.h
+** push_arg_list
 */
 
 #include "robot_factory.h"
 
+//TODO: comment (and understand) theses
 static int get_arg_value_type(char *arg, int type, char inst)
 {
     if (type == 1)

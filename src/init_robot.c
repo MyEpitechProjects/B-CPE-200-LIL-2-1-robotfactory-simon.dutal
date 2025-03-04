@@ -2,11 +2,12 @@
 ** EPITECH PROJECT, 2024
 ** robot_factory
 ** File description:
-** op.h
+** ini_robot
 */
 
 #include "robot_factory.h"
 
+//TODO:::
 static int init_robot_header(factory_t *robot)
 {
     my_memset(&robot->header, sizeof(header_t), 0);
@@ -51,6 +52,7 @@ static int init_robot_flg(factory_t *robot)
     return 0;
 }
 
+//initializes uhhhh stuff
 int init_robot(int arg_idx, char **argv, factory_t *robot)
 {
     robot->offset = 0;

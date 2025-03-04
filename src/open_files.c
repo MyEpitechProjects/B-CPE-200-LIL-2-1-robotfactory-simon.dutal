@@ -2,11 +2,12 @@
 ** EPITECH PROJECT, 2024
 ** robot_factory
 ** File description:
-** op.h
+** open_files
 */
 
 #include "robot_factory.h"
 
+//gets and returns the position in the file
 unsigned long my_ftell(FILE *f)
 {
     long offset = f->_offset;
@@ -16,6 +17,7 @@ unsigned long my_ftell(FILE *f)
     return offset;
 }
 
+//returns the lenght of the file's content
 unsigned long get_lenght(FILE *f)
 {
     unsigned long value = 0;
@@ -26,6 +28,7 @@ unsigned long get_lenght(FILE *f)
     return value;
 }
 
+//closes the file
 int ffclose(FILE *f, int ret_value)
 {
     if (f != NULL)
@@ -33,6 +36,7 @@ int ffclose(FILE *f, int ret_value)
     return ret_value;
 }
 
+//open, reads and starts parsing the file's content
 int open_files(factory_t *robot)
 {
     FILE *in = fopen(robot->input_name, "rb");

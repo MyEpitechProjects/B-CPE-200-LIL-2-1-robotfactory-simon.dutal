@@ -2,11 +2,12 @@
 ** EPITECH PROJECT, 2024
 ** robot_factory
 ** File description:
-** op.h
+** list_len
 */
 
 #include "robot_factory.h"
 
+//returns the number of instructions
 int get_inst_list_len(factinst_t *tmp)
 {
     int idx = 0;
@@ -16,6 +17,7 @@ int get_inst_list_len(factinst_t *tmp)
     return idx + 1;
 }
 
+//TODO: comment
 int get_label_list_len(factlab_t *tmp)
 {
     int idx = 0;

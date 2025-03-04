@@ -2,12 +2,13 @@
 ** EPITECH PROJECT, 2024
 ** robot_factory
 ** File description:
-** op.h
+** args_checker
 */
 
 #include "robot_factory.h"
 
-static bool is_labal_char_valid(char l)
+//checks if given char can be in a label name
+static bool is_label_char_valid(char l)
 {
     char *str = LABEL_CHARS;
 
@@ -18,12 +19,13 @@ static bool is_labal_char_valid(char l)
     return false;
 }
 
+//checks if given string is a valid label
 bool is_label_valid(char *label)
 {
     if (label == NULL || my_strlen(label) < 1)
         return false;
     for (int i = 0; label[i] != '\0'; i++){
-        if (!is_labal_char_valid(label[i]))
+        if (!is_label_char_valid(label[i]))
             return false;
     }
     return true;
@@ -41,6 +43,7 @@ static int verify_reg(char *arg)
     return -2;
 }
 
+//identifies what kind of arg the given string represents
 int get_args_type(char *arg)
 {
     char c[] = "  ";
@@ -63,6 +66,8 @@ int get_args_type(char *arg)
     return -1;
 }
 
+//checks if arg is valid, if not prints an error
+//and causes the program to stop
 int check_arg(factory_t *robot, op_t inst, int fix)
 {
     int my_arg = -1;
@@ -81,6 +86,7 @@ int check_arg(factory_t *robot, op_t inst, int fix)
     return 0;
 }
 
+//checks if the given arg is possible
 bool is_arg_possible(char arg, char possible_arg)
 {
     if ((possible_arg & arg) == arg)
@@ -88,6 +94,7 @@ bool is_arg_possible(char arg, char possible_arg)
     return false;
 }
 
+//TODO: comment
 char get_encoding_byte(op_t inst, factory_t *robot, int fix)
 {
     int value = 6;

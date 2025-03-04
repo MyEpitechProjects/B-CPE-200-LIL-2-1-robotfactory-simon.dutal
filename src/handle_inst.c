@@ -2,11 +2,12 @@
 ** EPITECH PROJECT, 2024
 ** robot_factory
 ** File description:
-** op.h
+** handle_inst
 */
 
 #include "robot_factory.h"
 
+//allocs a array of stucts to store the args data
 static factarg_t *create_args_list(void)
 {
     factarg_t *args = malloc(sizeof(factarg_t) * 5);
@@ -17,6 +18,7 @@ static factarg_t *create_args_list(void)
     return args;
 }
 
+//TODO: rename and comment
 static int check(factory_t *robot, op_t inst, int fix)
 {
     if (my_list_len(robot->split) - fix > (unsigned int) inst.nbr_args){
@@ -28,6 +30,8 @@ static int check(factory_t *robot, op_t inst, int fix)
     return 0;
 }
 
+//TODO: comment
+//causes the program to stop in case of bad argument(s)
 int compute_inst(factory_t *robot, op_t inst, int fixed)
 {
     int fix = 0;
@@ -51,6 +55,9 @@ int compute_inst(factory_t *robot, op_t inst, int fixed)
     return res;
 }
 
+//handles the instruction and its arguments,
+//prints an error and causes the program to stop
+//in case of bad instruction or argument(s)
 int handle_inst(factory_t *robot, int fix)
 {
     extern const op_t op_tab[];

@@ -2,11 +2,12 @@
 ** EPITECH PROJECT, 2024
 ** robot_factory
 ** File description:
-** op.h
+** robot_offset
 */
 
 #include "robot_factory.h"
 
+//TODO: comment
 char is_dir_size_2(char inst)
 {
     char inst_code[] = {9, 10, 11, 12, 14, 15, 0};
@@ -18,6 +19,7 @@ char is_dir_size_2(char inst)
     return 4;
 }
 
+//returns the byte size of the data type?
 void get_type_size(factory_t *robot, char type, char inst)
 {
     if (type == 1)

@@ -2,16 +2,19 @@
 ** EPITECH PROJECT, 2024
 ** robot_factory
 ** File description:
-** op.h
+** fwrite_byte
+** DEPRECATED
 */
 
 #include "robot_factory.h"
 
+//writes a byte to the file
 size_t fwrite_byte(FILE *f, char c)
 {
     return fwrite(&c, sizeof(c), 1, f);
 }
 
+//writes the given amount of bytes to the file
 size_t fwrite_bytes(FILE *f, int size, char *c)
 {
     return fwrite(c, size, 1, f);
