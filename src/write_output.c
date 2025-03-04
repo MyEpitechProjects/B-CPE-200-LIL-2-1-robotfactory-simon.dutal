@@ -7,7 +7,7 @@
 
 #include "robot_factory.h"
 
-//TODO: comment all these horrors beyond my comprehension
+// get size of the file extension (like : .s, .png...)
 int get_ext_lenght(factory_t *robot)
 {
     int has_point = 0;
@@ -43,6 +43,7 @@ FILE *create_file(factory_t *robot)
     return f;
 }
 
+// get the offset of the given label
 short get_label_offset(factlab_t *lab, char *label)
 {
     for (int i = 0; lab[i].offset != -1; i++) {
@@ -54,6 +55,7 @@ short get_label_offset(factlab_t *lab, char *label)
     return -1;
 }
 
+// add correct value depending the instruction
 static int write_one_arg(factory_t *robot, factarg_t arg)
 {
     int tmp = 0;
@@ -76,6 +78,7 @@ static int write_one_arg(factory_t *robot, factarg_t arg)
     return -1;
 }
 
+// loop in the args list for each instruction
 int write_args(factory_t *robot, factarg_t *arg)
 {
     int noffset = 0;
@@ -86,6 +89,7 @@ int write_args(factory_t *robot, factarg_t *arg)
     return noffset;
 }
 
+// fill instruction in the buffer
 static int write_inst(factory_t *robot)
 {
     int noffset = 0;
@@ -109,6 +113,7 @@ static int write_inst(factory_t *robot)
     return 0;
 }
 
+// create and fill header output buffer then write it in the file
 int write_output(factory_t *robot)
 {
     FILE *f;

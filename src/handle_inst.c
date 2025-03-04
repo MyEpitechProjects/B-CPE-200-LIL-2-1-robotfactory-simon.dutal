@@ -18,7 +18,7 @@ static factarg_t *create_args_list(void)
     return args;
 }
 
-//TODO: rename and comment
+//check args
 static int check(factory_t *robot, op_t inst, int fix)
 {
     if (my_list_len(robot->split) - fix > (unsigned int) inst.nbr_args){
@@ -30,7 +30,7 @@ static int check(factory_t *robot, op_t inst, int fix)
     return 0;
 }
 
-//TODO: comment
+//extract and push instruction/args
 //causes the program to stop in case of bad argument(s)
 int compute_inst(factory_t *robot, op_t inst, int fixed)
 {

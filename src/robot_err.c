@@ -7,6 +7,7 @@
 
 #include "robot_factory.h"
 
+// error messages list
 const char *messages_err[] = {
     "The file is empty.\n",
     "No name specified.\n",
@@ -66,7 +67,7 @@ int robot_warn(factory_t *robot, int message_id, int line)
     return 0;
 }
 
-//TODO: comment
+// check error after writing all data in struct
 int check_err(factory_t *robot)
 {
     if (robot->flg.file_empty == 1){

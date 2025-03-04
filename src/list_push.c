@@ -8,8 +8,7 @@
 #include "robot_factory.h"
 
 //realloc with security wrapper
-//TODO: why is this here?
-void *secure_realloc(void *pointer, size_t size)
+static void *secure_realloc(void *pointer, size_t size)
 {
     void *tmp = pointer;
 
@@ -21,7 +20,7 @@ void *secure_realloc(void *pointer, size_t size)
     return pointer;
 }
 
-//TODO: comments
+//push instruction
 int push_inst(factory_t *robot, int opcode, int encoding_byte, factarg_t *args)
 {
     int len = get_inst_list_len(robot->inst);
@@ -37,6 +36,7 @@ int push_inst(factory_t *robot, int opcode, int encoding_byte, factarg_t *args)
     return 0;
 }
 
+// push label with his position
 int push_label(factory_t *robot, char *label)
 {
     int len = get_label_list_len(robot->label);

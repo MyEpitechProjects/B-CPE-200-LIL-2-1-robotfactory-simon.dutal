@@ -31,6 +31,7 @@ bool is_label_valid(char *label)
     return true;
 }
 
+//return error if invalid register
 static int verify_reg(char *arg)
 {
     int val = 0;
@@ -94,7 +95,7 @@ bool is_arg_possible(char arg, char possible_arg)
     return false;
 }
 
-//TODO: comment
+//get encoding byte based on args type
 char get_encoding_byte(op_t inst, factory_t *robot, int fix)
 {
     int value = 6;

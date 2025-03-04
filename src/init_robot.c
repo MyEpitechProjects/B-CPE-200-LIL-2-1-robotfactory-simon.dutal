@@ -7,7 +7,7 @@
 
 #include "robot_factory.h"
 
-//TODO:::
+//initializes header
 static int init_robot_header(factory_t *robot)
 {
     my_memset(&robot->header, sizeof(header_t), 0);
@@ -18,6 +18,7 @@ static int init_robot_header(factory_t *robot)
     return 0;
 }
 
+//initializes inst
 static int init_robot_inst(factory_t *robot)
 {
     robot->inst = malloc(sizeof(factinst_t) * 1);
@@ -28,6 +29,7 @@ static int init_robot_inst(factory_t *robot)
     return 0;
 }
 
+//initializes label
 static int init_robot_label(factory_t *robot)
 {
     robot->label = malloc(sizeof(factlab_t) * 1);
@@ -38,6 +40,7 @@ static int init_robot_label(factory_t *robot)
     return 0;
 }
 
+//initializes flg
 static int init_robot_flg(factory_t *robot)
 {
     robot->flg.comment_gived = 0;
@@ -52,7 +55,7 @@ static int init_robot_flg(factory_t *robot)
     return 0;
 }
 
-//initializes uhhhh stuff
+//initializes robot
 int init_robot(int arg_idx, char **argv, factory_t *robot)
 {
     robot->offset = 0;

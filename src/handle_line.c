@@ -7,7 +7,7 @@
 
 #include "robot_factory.h"
 
-//TODO: cmment all of theses
+//push name if valid
 int get_name(factory_t *robot)
 {
     int ln = robot->idx + 1;
@@ -29,6 +29,7 @@ int get_name(factory_t *robot)
     return 0;
 }
 
+//push comment if valid
 int get_comment(factory_t *robot)
 {
     int ln = robot->idx + 1;
@@ -52,6 +53,7 @@ int get_comment(factory_t *robot)
     return 0;
 }
 
+//extract and push a label if valid
 int extract_label(factory_t *robot)
 {
     int len = my_strlen(robot->split[0]);

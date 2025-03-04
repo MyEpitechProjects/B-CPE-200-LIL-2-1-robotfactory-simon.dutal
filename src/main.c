@@ -27,6 +27,7 @@ int help(char **argv, int silent, int ret_value)
     return ret_value;
 }
 
+//start robot extracting
 int start(factory_t *robot)
 {
     int x = 0;
@@ -48,6 +49,7 @@ int start(factory_t *robot)
     return 0;
 }
 
+//robot script for each file in program command
 int robot_loop(char **argv, int argv_idx)
 {
     int x = 0;

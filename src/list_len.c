@@ -7,7 +7,7 @@
 
 #include "robot_factory.h"
 
-//returns the number of instructions
+//returns the number of instructions + 1
 int get_inst_list_len(factinst_t *tmp)
 {
     int idx = 0;
@@ -17,7 +17,7 @@ int get_inst_list_len(factinst_t *tmp)
     return idx + 1;
 }
 
-//TODO: comment
+//returns the number of label + 1
 int get_label_list_len(factlab_t *tmp)
 {
     int idx = 0;

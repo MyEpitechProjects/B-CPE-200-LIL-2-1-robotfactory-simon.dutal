@@ -52,6 +52,7 @@ static void fix(int number, int idx, char **result)
 }
 
 //split, python style
+//so ("    " with " " delimiter will give ["","","","",""])
 char **my_pysplit(char *str, char delimiter)
 {
     int number = calc_token_num(str, delimiter);

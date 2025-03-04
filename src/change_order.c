@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2024
 ** robot_factory
 ** File description:
-** fwrite_int
+** change_order
 */
 
 #include "robot_factory.h"
@@ -24,7 +24,7 @@ int change_short_order(short num)
 {
     short result = 0;
 
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 2; i++) {
         result = (result | ((num >> (i * 8)) & 0xFF) <<
             (((sizeof(num) -1) - i) * 8));
     }

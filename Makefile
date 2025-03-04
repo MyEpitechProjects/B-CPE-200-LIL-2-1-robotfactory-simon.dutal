@@ -9,10 +9,9 @@ NAME	= asm
 
 SRC	=	src/op.c\
 		src/main.c\
-		src/fwrite_int.c\
+		src/change_order.c\
 		src/open_files.c\
 		src/handle_line.c\
-		src/fwrite_byte.c\
 		src/init_robot.c\
 		src/my_list_len.c\
 		src/write_output.c\

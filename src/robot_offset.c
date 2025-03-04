@@ -7,7 +7,7 @@
 
 #include "robot_factory.h"
 
-//TODO: comment
+// return 4 if DIR is size 4, 2 if it size 2
 char is_dir_size_2(char inst)
 {
     char inst_code[] = {9, 10, 11, 12, 14, 15, 0};

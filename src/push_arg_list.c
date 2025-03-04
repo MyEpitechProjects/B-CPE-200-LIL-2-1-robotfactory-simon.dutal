@@ -7,7 +7,7 @@
 
 #include "robot_factory.h"
 
-//TODO: comment (and understand) theses
+// get arg value type based on his type and instruction
 static int get_arg_value_type(char *arg, int type, char inst)
 {
     if (type == 1)
@@ -29,6 +29,7 @@ static int get_arg_value_type(char *arg, int type, char inst)
     return 0;
 }
 
+// push short value in instruction args list
 static void push_arg_short(char *arg, factarg_t *args, int i, int fix)
 {
     int res;
@@ -40,6 +41,7 @@ static void push_arg_short(char *arg, factarg_t *args, int i, int fix)
     args[(i - fix)].short_val = (short) res;
 }
 
+// push label (string) value in instruction args list
 static void push_arg_lab(char *arg, factarg_t args[], int i, int fix)
 {
     int fixed = 0;
@@ -54,6 +56,7 @@ static void push_arg_lab(char *arg, factarg_t args[], int i, int fix)
         my_strcpy(args[(i - fix)].label_name, arg + fixed);
 }
 
+// push int value in instruction args list
 static void push_arg_int(char *arg, factarg_t *args, int i, int fix)
 {
     int res = my_atoi(arg + 1);
@@ -61,6 +64,7 @@ static void push_arg_int(char *arg, factarg_t *args, int i, int fix)
     args[(i - fix)].int_val = res;
 }
 
+// push char value in instruction args list
 static void push_arg_char(char *arg, factarg_t *args, int i, int fix)
 {
     char res = my_atouc(arg + 1);
@@ -68,6 +72,7 @@ static void push_arg_char(char *arg, factarg_t *args, int i, int fix)
     args[(i - fix)].char_val = res;
 }
 
+// push args value in instruction args list
 void extract_args(factory_t *robot, factarg_t *args, int fix, char inst)
 {
     int type = -1;

@@ -7,6 +7,7 @@
 
 #include "robot_factory.h"
 
+// init swrite buffer
 swrite_t *swrite_init(int size)
 {
     swrite_t *writer = malloc(sizeof(swrite_t));
@@ -23,6 +24,7 @@ swrite_t *swrite_init(int size)
     return writer;
 }
 
+// write data in the swrite buffer
 int swrite_write(void *buffer, int size, swrite_t *fd)
 {
     int old_pos = fd->pos;
@@ -36,6 +38,7 @@ int swrite_write(void *buffer, int size, swrite_t *fd)
     return fd->pos - old_pos;
 }
 
+// write data in inversed order in the swrite buffer
 int swrite_w_rev(void *buffer, int size, swrite_t *fd)
 {
     int old_pos = fd->pos;
@@ -49,6 +52,7 @@ int swrite_w_rev(void *buffer, int size, swrite_t *fd)
     return fd->pos - old_pos;
 }
 
+// write the swrite buffer in the given file
 int swrite_to_file(swrite_t *fd, FILE *fd2)
 {
     return fwrite(fd->buffer, fd->pos, 1, fd2);
