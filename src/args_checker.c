@@ -49,6 +49,8 @@ int get_args_type(char *arg)
 {
     char c[] = "  ";
 
+    if (my_string_is_int(arg))
+        return T_IND;
     if (my_strlen(arg) < 2)
         return -1;
     my_sscanf(arg, "%c%c", &c[0], &c[1]);
@@ -62,8 +64,6 @@ int get_args_type(char *arg)
     }
     if (c[0] == LABEL_CHAR)
         return T_IND;
-    if (my_string_is_int(arg))
-        return T_IND;
     return -1;
 }
 
@@ -73,7 +73,7 @@ int check_arg(factory_t *robot, op_t inst, int fix)
 {
     int my_arg = -1;
 
-    for (int i = fix; robot->split[i] != NULL; i++){
+    for (int i = fix; i < (fix + inst.nbr_args); i++){
         my_arg = get_args_type(robot->split[i]);
         if (my_arg < 0){
             robot_err(robot, 9 + my_arg, robot->idx + 1);
@@ -103,7 +103,7 @@ char get_encoding_byte(op_t inst, factory_t *robot, int fix)
     int type = 0;
     int arg_type = 0;
 
-    for (int i = fix; robot->split[i] != NULL; i++){
+    for (int i = fix; i < (fix + inst.nbr_args); i++){
         type = inst.type[i - fix];
         arg_type = get_args_type(robot->split[i]);
         get_type_size(robot, arg_type, inst.code);

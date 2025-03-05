@@ -46,10 +46,14 @@ static void push_arg_lab(char *arg, factarg_t args[], int i, int fix)
 {
     int fixed = 0;
 
-    if (arg[0] == LABEL_CHAR)
+    if (arg[0] == LABEL_CHAR){
         fixed += 1;
-    if (arg[0] == DIRECT_CHAR)
+        args[(i - fix)].char_val = 0;
+    }
+    if (arg[0] == DIRECT_CHAR){
         fixed += 2;
+        args[(i - fix)].char_val = 1;
+    }
     args[(i - fix)].label_name = malloc(sizeof(char) *
         (my_strlen(arg + fixed) + 1));
     if (args[(i - fix)].label_name != NULL)
@@ -77,7 +81,8 @@ void extract_args(factory_t *robot, factarg_t *args, int fix, char inst)
 {
     int type = -1;
 
-    for (int i = fix; robot->split[i] != NULL; i++){
+    for (int i = fix; robot->split[i] != NULL &&
+        robot->split[i][0] != COMMENT_CHAR; i++){
         type = get_arg_value_type(robot->split[i],
             get_args_type(robot->split[i]), inst);
         args[(i - fix)].type = type;

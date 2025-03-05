@@ -44,7 +44,7 @@ FILE *create_file(factory_t *robot)
 }
 
 // get the offset of the given label
-short get_label_offset(factlab_t *lab, char *label)
+int get_label_offset(factlab_t *lab, char *label)
 {
     for (int i = 0; lab[i].offset != -1; i++) {
         if (lab[i].label == NULL)
@@ -56,7 +56,7 @@ short get_label_offset(factlab_t *lab, char *label)
 }
 
 // add correct value depending the instruction
-static int write_one_arg(factory_t *robot, factarg_t arg)
+static int write_one_arg(factory_t *robot, factarg_t arg, int opcode)
 {
     int tmp = 0;
 
@@ -67,7 +67,9 @@ static int write_one_arg(factory_t *robot, factarg_t arg)
             return -1;
         }
         tmp = (tmp - robot->offset);
-        return swrite_w_rev(&tmp, sizeof(short), robot->output);
+        if (is_dir_size_2(opcode) == 2 || !(arg.char_val))
+            return swrite_w_rev(&tmp, sizeof(short), robot->output);
+        return swrite_w_rev(&tmp, sizeof(int), robot->output);
     }
     if (arg.type == 2)
         return swrite_w_rev(&arg.short_val, sizeof(short), robot->output);
@@ -79,12 +81,12 @@ static int write_one_arg(factory_t *robot, factarg_t arg)
 }
 
 // loop in the args list for each instruction
-int write_args(factory_t *robot, factarg_t *arg)
+int write_args(factory_t *robot, factarg_t *arg, int opcode)
 {
     int noffset = 0;
 
     for (int i = 0; arg[i].type != 0; i++) {
-        noffset += write_one_arg(robot, arg[i]);
+        noffset += write_one_arg(robot, arg[i], opcode);
     }
     return noffset;
 }
@@ -104,7 +106,7 @@ static int write_inst(factory_t *robot)
             robot->output);
             noffset += 1;
         }
-        tmp = write_args(robot, robot->inst[i].args);
+        tmp = write_args(robot, robot->inst[i].args, robot->inst[i].opcode);
         if (tmp < 0)
             return 84;
         noffset += tmp;

@@ -54,7 +54,7 @@ typedef struct factory_arg {
     int int_val;
     char char_val;
     char *label_name;
-    short short_val;
+    signed short short_val;
 } factarg_t;
 
 typedef struct factory_inst {
@@ -126,6 +126,5 @@ int swrite_write(void *buffer, int size, swrite_t *fd);
 int swrite_to_file(swrite_t *fd, FILE *fd2);
 int swrite_w_rev(void *buffer, int size, swrite_t *fd);
 int my_free(void *value, int ret_value);
-short get_label_offset(factlab_t *lab, char *label);
-
+int get_label_offset(factlab_t *lab, char *label);
 #endif

@@ -38,7 +38,8 @@ unsigned char my_atouc(char const *str)
 int my_atoi(char const *str)
 {
     int res = 0;
-    int idx = 0;
+    int negative = (str[0] == '-');
+    int idx = (negative == 1);
 
     while (str[idx] != '\0' && my_char_is_int(str[idx])){
         res += (str[idx] - 48);
@@ -46,5 +47,8 @@ int my_atoi(char const *str)
             res = (res * 10);
         idx++;
     }
-    return res;
+    if (negative == 0)
+        return res;
+    else
+        return res * -1;
 }
