@@ -7,6 +7,7 @@
 
 #include "robot_factory.h"
 
+//pushes the parsed name and comment to the data structs
 static int push_data(factory_t *robot, int mode, char *name)
 {
     robot->flg.file_empty = 0;
@@ -29,9 +30,10 @@ static int push_data(factory_t *robot, int mode, char *name)
     return 0;
 }
 
+//returns false if the name or comment is empty
 static bool is_name_comment_empty(factory_t *robot)
 {
-    char **split = my_split(robot->input[robot->idx], " \t,", '\0');
+    char **split = my_split(robot->input[robot->idx], "\t, ", '\0');
     bool res = false;
 
     if (split == NULL)
@@ -44,9 +46,10 @@ static bool is_name_comment_empty(factory_t *robot)
     return res;
 }
 
+//checks for syntax error in name
 static bool is_syntax_err(factory_t *robot)
 {
-    char **split = my_split(robot->input[robot->idx], " \t,", '\0');
+    char **split = my_split(robot->input[robot->idx], "\t, ", '\0');
     int res = 0;
     int len = 0;
 
