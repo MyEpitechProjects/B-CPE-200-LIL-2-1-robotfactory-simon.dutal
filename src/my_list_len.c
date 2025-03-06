@@ -12,7 +12,7 @@ unsigned int my_list_len(char **value)
 {
     unsigned int idx = 0;
 
-    while (value[idx] != NULL && value[idx][0] != COMMENT_CHAR)
+    while (value[idx] != NULL)
         idx++;
     return idx;
 }
