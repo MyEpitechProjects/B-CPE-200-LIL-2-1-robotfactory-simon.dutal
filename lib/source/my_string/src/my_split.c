@@ -6,6 +6,7 @@
 */
 
 #include "my_string.h"
+#include "op.h"
 
 static bool is_delim(char c, const char *delim, int activated)
 {
@@ -32,7 +33,7 @@ static int get_word_num(const char *text, const char *delim, char spe)
     int is_word = 0;
     int act = 0;
 
-    for (int i = 0; text[i] != '\0'; i++){
+    for (int i = 0; text[i] != '\0' && text[i] != COMMENT_CHAR; i++){
         if (is_delim(text[i], delim, act) && is_word == 1)
             is_word = 0;
         if (text[i] == spe){
@@ -69,7 +70,8 @@ static int split_push(const char *text, const char *delim,
     int idx = 0;
     int i = 0;
 
-    while ((!is_delim(text[i], delim, 0) || act == 1) && text[i] != '\0'){
+    while ((!is_delim(text[i], delim, 0) || act == 1) &&
+        (text[i] != '\0' && text[i] != COMMENT_CHAR)){
         if (text[i] != spe){
             (*res)[idx] = text[i];
             idx++;
@@ -114,7 +116,7 @@ char **my_split(const char *text, const char *delim, char spe)
 
     if (text == NULL || delim == NULL)
         return NULL;
-    if (text[0] == '\0' || delim[0] == '\0')
+    if (text[0] == '\0' || delim[0] == '\0' || text[0] == COMMENT_CHAR)
         return NULL;
     word_num = get_word_num(text, delim, spe);
     if (word_num > 0)

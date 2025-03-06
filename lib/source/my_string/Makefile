@@ -26,7 +26,7 @@ CC	= gcc
 
 CFLAGS  = -Wall -Wextra -fanalyzer
 
-LFLAGS	= -I include
+LFLAGS	= -I include -I ../../../include
 
 all: $(NAME)
 
