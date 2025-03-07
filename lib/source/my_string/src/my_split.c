@@ -33,7 +33,8 @@ static int get_word_num(const char *text, const char *delim, char spe)
     int is_word = 0;
     int act = 0;
 
-    for (int i = 0; text[i] != '\0' && (act == 1 || text[i] != COMMENT_CHAR); i++){
+    for (int i = 0; text[i] != '\0' &&
+        (act == 1 || text[i] != COMMENT_CHAR); i++){
         if (is_delim(text[i], delim, act) && is_word == 1)
             is_word = 0;
         if (text[i] == spe){

@@ -25,6 +25,10 @@ static int check(factory_t *robot, op_t inst, int fix)
         robot_err(robot, MANY_ARG, robot->idx + 1);
         return 84;
     }
+    if (my_list_len(robot->split) - fix < (unsigned int) inst.nbr_args){
+        robot_err(robot, FEW_ARG, robot->idx + 1);
+        return 84;
+    }
     if (check_arg(robot, inst, fix) == 84)
         return 84;
     return 0;

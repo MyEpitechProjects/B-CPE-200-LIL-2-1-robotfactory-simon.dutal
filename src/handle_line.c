@@ -8,8 +8,10 @@
 #include "robot_factory.h"
 
 //pushes the parsed name and comment to the data structs
-static int push_data(factory_t *robot, int mode, char *name)
+static int push_data(factory_t *robot, int mode, char *name, int r)
 {
+    if (r != -1)
+        return 84;
     robot->flg.file_empty = 0;
     if (mode == 0){
         robot->header.prog_name[0] = '\0';
@@ -71,21 +73,21 @@ int get_name(factory_t *robot)
     int ln = robot->idx + 1;
     int r = -1;
 
-    if (is_name_comment_empty(robot))
-        return push_data(robot, 0, NULL);
-    if (r == -1 && is_syntax_err(robot))
-        r = robot_err(robot, SYNTAX_ERR, ln);
-    if (r == -1 && my_list_len(robot->split) != 2)
-        r = robot_err(robot, MISS_NAME, ln);
     if (r == -1 && robot->flg.header_end == 1)
         r = robot_err(robot, NAME_FIRST, ln);
     if (r == -1 && robot->flg.name_gived == 1)
         r = robot_err(robot, NAME_ONCE, ln);
+    if (is_name_comment_empty(robot))
+        return push_data(robot, 0, NULL, r);
+    if (r == -1 && is_syntax_err(robot))
+        r = robot_err(robot, SYNTAX_ERR, ln);
+    if (r == -1 && my_list_len(robot->split) != 2)
+        r = robot_err(robot, MISS_NAME, ln);
     if (r == -1 && my_strlen(robot->split[1]) > PROG_NAME_LENGTH)
         r = robot_err(robot, NAME_LONG, ln);
     if (r != -1)
         return 84;
-    return push_data(robot, 2, robot->split[1]);
+    return push_data(robot, 2, robot->split[1], r);
 }
 
 //push comment if valid
@@ -94,23 +96,23 @@ int get_comment(factory_t *robot)
     int ln = robot->idx + 1;
     int r = -1;
 
-    if (r == -1 && is_name_comment_empty(robot))
-        return push_data(robot, 1, NULL);
-    if (r == -1 && is_syntax_err(robot))
-        r = robot_err(robot, SYNTAX_ERR, ln);
-    if (r == -1 && my_list_len(robot->split) != 2)
-        r = robot_err(robot, MISS_COMM, ln);
     if (r == -1 && robot->flg.comment_gived == 1)
         r = robot_err(robot, COMM_ONCE, ln);
     if (r == -1 && robot->flg.name_gived == 0)
         r = robot_err(robot, COMM_AFTER, ln);
+    if (r == -1 && is_name_comment_empty(robot))
+        return push_data(robot, 1, NULL, r);
+    if (r == -1 && is_syntax_err(robot))
+        r = robot_err(robot, SYNTAX_ERR, ln);
+    if (r == -1 && my_list_len(robot->split) != 2)
+        r = robot_err(robot, MISS_COMM, ln);
     if (r == -1 && robot->flg.header_end == 1)
         r = robot_err(robot, MISS_COMM, ln);
     if (r == -1 && my_strlen(robot->split[1]) > COMMENT_LENGTH)
         r = robot_err(robot, COMM_LONG, ln);
     if (r != -1)
         return 84;
-    return push_data(robot, 3, robot->split[1]);
+    return push_data(robot, 3, robot->split[1], r);
 }
 
 //extract and push a label if valid

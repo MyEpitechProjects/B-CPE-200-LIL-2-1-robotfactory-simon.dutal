@@ -84,9 +84,13 @@ static int write_one_arg(factory_t *robot, factarg_t arg, int opcode)
 int write_args(factory_t *robot, factarg_t *arg, int opcode)
 {
     int noffset = 0;
+    int tmp_offset = 0;
 
     for (int i = 0; arg[i].type != 0; i++) {
-        noffset += write_one_arg(robot, arg[i], opcode);
+        tmp_offset = write_one_arg(robot, arg[i], opcode);
+        if (tmp_offset < 0)
+            return -1;
+        noffset += tmp_offset;
     }
     return noffset;
 }

@@ -26,6 +26,7 @@ const char *messages_err[] = {
     "The comment must be just after the name.\n",
     "The comment is too long.\n",
     "Undefined label.\n",
+    "Too few arguments given to the instruc tion.\n",
     NULL
 };
 

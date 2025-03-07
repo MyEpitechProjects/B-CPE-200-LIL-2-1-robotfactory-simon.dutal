@@ -33,6 +33,7 @@
     #define COMM_AFTER 14
     #define COMM_LONG 15
     #define UNDEF_LABEL 16
+    #define FEW_ARG 17
 
     /* SIZE TYPE COMPILED */
     #define IND_LAB 1
