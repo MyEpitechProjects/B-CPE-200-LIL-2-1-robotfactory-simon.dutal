@@ -40,12 +40,30 @@ static bool is_name_comment_empty(factory_t *robot)
 
     if (split == NULL)
         return false;
-    if (my_list_len(split) < 2)
+    if (my_list_len(split) < 2){
+        free_list(split, 0);
         return false;
+    }
     if (my_strcmp(split[1], "\"\"") == 0)
         res = true;
     free_list(split, 0);
     return res;
+}
+
+//checks if number of "
+static int calc_number_quote(char *str)
+{
+    int number = 0;
+    int idx = 0;
+
+    if (str == NULL)
+        return 0;
+    while (str[idx] != '\0'){
+        if (str[idx] == '"')
+            number++;
+        idx++;
+    }
+    return number;
 }
 
 //checks for syntax error in name
@@ -64,7 +82,9 @@ static bool is_syntax_err(factory_t *robot)
         split[len - 1][my_strlen(split[len - 1]) - 1] != '"')
         res = 1;
     free_list(split, 0);
-    return res;
+    if (calc_number_quote(robot->input[robot->idx]) == 2)
+        return res;
+    return true;
 }
 
 //push name if valid
